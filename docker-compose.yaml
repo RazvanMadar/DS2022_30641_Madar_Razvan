@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  server:
+    container_name: backendcontainer
+    image: backend-image
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresdatabase
+  postgresdatabase:
+    container_name: postgrescontainer2
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=city-db
